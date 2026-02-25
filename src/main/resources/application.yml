@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: bpoc-api
+  profiles:
+    active: local
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.victorprocopio: DEBUG
+
+hero:
+  api:
+    base-url: https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api
+
+springdoc:
+  swagger-ui:
+    path: /api/docs
+
+management:
+  endpoints:
+    web:
+      base-path: /api
+      exposure:
+        include: health,info,metrics,prometheus
+  observations:
+    http:
+      server:
+        requests:
+          enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      percentiles:
+        http.server.requests: 0.5,0.9,0.95,0.99
